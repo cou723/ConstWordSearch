@@ -27,7 +27,7 @@ for (let _i = 0; _i < buttons.length; _i++) {
         console.log(query);
         var url = 'https://www.google.com/search?' + query;
         console.log(url);
-        //window.open(url, '_blank');
+        window.open(url, '_blank');
     };
 
 }
