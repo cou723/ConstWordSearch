@@ -17,31 +17,22 @@ console.log(buttons.length);
 console.log(buttons);
 for (let _i = 0; _i < buttons.length; _i++) {
     buttons[_i].onclick = () => {
+        console.log('click');
         var header = document.getElementById(`headerText${_i}`).innerText;
         var input = document.getElementById(`searchInput${_i}`).value;
         console.log(`headerText${_i}[${header}]`);
         console.log(`searchInput${_i}[${input}]`);
         var searchString = header + '+' + input;
+        searchString = encodeURI(searchString);
         console.log(searchString);
         var query = `q=${searchString}&oq=${searchString}`;
         console.log(query);
         var url = 'https://www.google.com/search?' + query;
         console.log(url);
-        window.open(url, '_blank');
+        //window.open(url, '_blank');
     };
 
 }
-
-//searchButton.onclick = () => {
-
-    //console.log(searchInput.value);
-    //var query;
-    //var q = headerText + searchInput.value;
-    //query = `q=${q}&oq=${q}`;
-    //var url = 'https://www.google.com/search?' + query ;
-    //console.log(url);
-    //window.open(url, '_blank'); // 新しいタブを開き、ページを表示
-//};
 
 function addSearchObj(headerText) {
     var count = searchesArea.children.length;
@@ -56,14 +47,21 @@ function addSearchObj(headerText) {
     searchP.id = `headerText${count}`;
     searchP.class = 'headerText';
     searchDiv.appendChild(searchP);
+    //form生成
+    var searchForm = document.createElement('form');
+    searchForm.method = 'post';
+    searchForm.id = `searchForm${count}`;
+    searchForm.onsubmit = 'return false';
+    searchDiv.appendChild(searchForm);
     //input生成
     var searchInput = document.createElement('input');
     searchInput.id = `searchInput${count}`;
     searchInput.type = 'text';
-    searchDiv.appendChild(searchInput);
+    searchForm.appendChild(searchInput);
     //button生成
-    var searchButton = document.createElement('button');
-    searchButton.innerText = '検索';
+    var searchButton = document.createElement('input');
+    searchButton.value = '検索';
+    searchButton.type = 'submit';
     searchButton.id = `${count}`;
-    searchDiv.appendChild(searchButton);
+    searchForm.appendChild(searchButton);
 }
