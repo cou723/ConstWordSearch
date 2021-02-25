@@ -5,7 +5,11 @@ function buttonClick(){
     if(addWord === ""){
         alert('単語を入力してください');
     }else{
-        console.log(`${addWord}:${encodeURIComponent(addWord)}`);
-        window.location.href = `${location.href},${encodeURIComponent(addWord)}`;
+        if(location.href.split(',').length == 1){
+            window.location.href = `${location.href}?,${encodeURIComponent(addWord)}`;
+        }else{
+            window.location.href = `${location.href},${encodeURIComponent(addWord)}`;
+        }
+
     }
 }
