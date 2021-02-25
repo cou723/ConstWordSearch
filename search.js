@@ -14,7 +14,7 @@ var inputs = new Array();
 var i = 0;
 queries.forEach(element => {
 
-    addSearchObj(element);
+    addSearchObj(decodeURIComponent(element));
     inputs.push(document.getElementById(i));
     i++;
 });
@@ -38,7 +38,7 @@ function Search(index){
     console.log(`headerText${index}[${header}]`);
     console.log(`searchInput${index}[${input}]`);
     var searchString = header + "+" + input;
-    searchString = encodeURI(searchString);
+    searchString = encodeURIComponent(searchString);
     console.log(searchString);
     var query = `q=${searchString}&oq=${searchString}`;
     console.log(query);
@@ -62,7 +62,7 @@ function addSearchObj(headerText) {
     searchP.innerText = headerText;
     searchP.id = `headerText${count}`;
     searchP.classList.add("headerText");
-    searchP.classList.add("col-xl-2");
+    searchP.classList.add("col-2");
     //searchP.classList.add("border-right-0");
     searchP.classList.add("border-primary");
     //searchP.classList.add("rounded-left");
@@ -70,11 +70,11 @@ function addSearchObj(headerText) {
 
     //form生成
     var searchForm = document.createElement("form");
-    //searchForm.method = "post";
     searchForm.id = `searchForm${count}`;
     searchForm.onsubmit = 'return false';
     searchForm.setAttribute('onsubmit','return false');
-    searchForm.classList.add("col-xl-8");
+    searchForm.classList.add("p-0");
+    searchForm.classList.add("col-10");
     searchDiv.appendChild(searchForm);
 
     //input生成

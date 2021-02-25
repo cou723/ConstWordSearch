@@ -1,0 +1,35 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+html{
+    padding-top: 100px;
+    background-color: #1b1b1b;
+    height: 100%;
+}
+
+body{
+    background-color: #1b1b1b;
+    color: azure;
+    height: 100%;
+}
+
+h1{
+    text-align: center;
+}
+
+.headerText{
+    text-align: right;
+}
+
+input{
+    margin-bottom: 10px;
+}
+
+footer{
+    background-color: #101010;
+}
+form{
+    padding: 0;
+}
