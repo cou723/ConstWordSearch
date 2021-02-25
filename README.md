@@ -1,6 +1,6 @@
 # ConstWordSearch
 
-https://cou01000111.github.io/ConstWordSearch/?
+https://cou01000111.github.io/ConstWordSearch
 
 ## 使い方
 1. 上のリンクにアクセス
