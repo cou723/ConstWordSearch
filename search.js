@@ -37,7 +37,7 @@ function Search(index){
     var input = document.getElementById(`${index}`).value;
     console.log(`headerText${index}[${header}]`);
     console.log(`searchInput${index}[${input}]`);
-    var searchString = header + "+" + input;
+    var searchString = header + " " + input;
     searchString = encodeURIComponent(searchString);
     console.log(searchString);
     var query = `q=${searchString}&oq=${searchString}`;
