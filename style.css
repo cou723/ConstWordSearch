@@ -1,5 +1,12 @@
-*{
-    color: aliceblue;
-    background-color: #1d1d1d;
-    border-color: aliceblue;
+img {}
+html{
+    margin-top: 250px;
+    background-color: #101010;
+}
+body{
+    background-color: #101010;
+    color: azure;
+}
+h1{
+    text-align: center;
 }
