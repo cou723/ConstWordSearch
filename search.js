@@ -70,13 +70,13 @@ function CreateDiv(count) {
 }
 
 function CreateSearchInput(count) {
-    var searchInput = CreateElement("input",[`${count}`],["form-control","mb-0","rounded-right"]);
+    var searchInput = CreateElement("input",[`${count}`],["form-control","mb-0","rounded-right","col-sm-8","col-md-10"]);
     searchInput.type = "text";
     return searchInput
 }
 
 function CreateSearchP(headerText,count) {
-    var searchP = CreateElement("p",[`headerText${count}`],["headerText","col-2","mb-0","align-items-center","d-flex","flex-row-reverse","input-group-addon","border","rounded-left"]);
+    var searchP = CreateElement("p",[`headerText${count}`],["headerText","col-2","mb-0","align-items-center","d-flex","flex-row-reverse","input-group-addon","border","rounded-left","col-sm-4","col-md-2"]);
     searchP.innerText = headerText;
     return searchP;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="pt-5">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,32 +8,35 @@
     <link rel="stylesheet" href="stylesheets/style.css">
     <script src="https://kit.fontawesome.com/a198b76e1e.js" crossorigin="anonymous"></script>
 
+    <link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="icon" href="./favicon.ico" type="image/vnd.microsoft.icon">
+
     <title>CoW Search</title>
 </head>
 <body class="d-flex flex-column h-100">
     <main class="flex-chrink-0">
-        <img class="d-block mx-auto img-responsive" src="logo2.png" alt="const word Search">
+        <img class="d-block mx-auto img-responsive mb-5" src="logo2.png" alt="const word Search">
         <div class="container" id="searches">
         </div>
         <div class="container" id="add-words">
             <div class="row">
-                <div class="input-div col-2 pr-3 pl-0">
+                <div class="input-div col-5 col-sm-4 col-md-2 pr-3 pl-0">
                     <input class="form-control m-0" id="add-word-input" type="text">
                 </div>
-                <button class="btn btn-outline-primary col-10" id="add-word-button" onclick="buttonClick()">単語を追加する</button>
+                <button class="btn btn-outline-primary col-7 col-sm-8 col-md-10" id="add-word-button" onclick="buttonClick()">単語を追加する</button>
             </div>
         </div>
     </main>
 
 
-    <footer class="footer mt-auto py-3">
+    <footer class="footer mt-auto pt-3">
         <div class="container">
-            このサイトへのリンクを取得する
-            <div class="border row">
-                <p class="col-11" id="url">test</p>
-                <i id="copy-button" class="far fa-copy  col-1"></i>
+            <p class="mb-2">このサイトへのリンクを取得する</p>
+            <div class="border row pt-3 p-2 rounded">
+                <p class="url col-11 m-0 overflow-auto" id="url">test</p>
+                <i class="far fa-copy btn-outline-light col-1" id="copy-button m-0"></i>
             </div>
-            <p class="m-0">v1.0.0</p>
+            <p class="m-0 mt-4">v1.0.0</p>
         </div>
     </footer>
 
