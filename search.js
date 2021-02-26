@@ -31,59 +31,63 @@ for (let _i = 0; _i < inputs.length; _i++) {
 function Search(index) {
     var header = document.getElementById(`headerText${index}`).innerText;
     var input = document.getElementById(`${index}`).value;
-    console.log(`headerText${index}[${header}]`);
-    console.log(`searchInput${index}[${input}]`);
+    //console.log(`headerText${index}[${header}]`);
+    //console.log(`searchInput${index}[${input}]`);
     var searchString = header + " " + input;
     searchString = encodeURIComponent(searchString);
-    console.log(searchString);
     var query = `q=${searchString}&oq=${searchString}`;
-    console.log(query);
     var url = "https://www.google.com/search?" + query;
-    console.log(url);
     window.open(url, "_blank");
 }
 
 function addSearchObj(headerText) {
     var count = searchesArea.children.length;
     console.log("call:addSearchObj:" + headerText);
-
     //div生成
-    var searchDiv = document.createElement("div");
-    searchDiv.id = `search${count}`;
-    searchDiv.classList.add("row");
+    var searchDiv = CreateDiv(count);
     searchesArea.appendChild(searchDiv);
-
     //form生成
-    var searchForm = document.createElement("form");
-    searchForm.id = `searchForm${count}`;
+    var searchForm = CreateForm(count);
+    searchDiv.appendChild(searchForm);
+    //p生成
+    var searchP = CreateSearchP(headerText,count);
+    searchForm.appendChild(searchP);
+    //input生成
+    var searchInput = CreateSearchInput(count);
+    searchForm.appendChild(searchInput);
+}
+
+function CreateForm(count) {
+    var searchForm = CreateElement("form",[`searchForm${count}`],["p-0","mb-2","input-group"]);
     searchForm.onsubmit = 'return false';
     searchForm.setAttribute('onsubmit', 'return false');
-    searchForm.classList.add("p-0");
-    searchForm.classList.add("mb-2");
-    searchForm.classList.add("input-group");
-    searchDiv.appendChild(searchForm);
+    return searchForm;
+}
 
-    //p生成
-    var searchP = document.createElement("p");
-    searchP.innerText = headerText;
-    searchP.id = `headerText${count}`;
-    searchP.classList.add("headerText");
-    searchP.classList.add("col-2");
-    searchP.classList.add("mb-0");
-    searchP.classList.add("align-items-center");
-    searchP.classList.add("d-flex");
-    searchP.classList.add("flex-row-reverse");
-    searchP.classList.add("input-group-addon");
-    searchP.classList.add("border");
-    searchP.classList.add("rounded-left");
-    searchForm.appendChild(searchP);
+function CreateDiv(count) {
+    var searchDiv = CreateElement("div",[`search${count}`],["row"]);
+    return searchDiv;
+}
 
-    //input生成
-    var searchInput = document.createElement("input");
-    searchInput.id = `${count}`;
+function CreateSearchInput(count) {
+    var searchInput = CreateElement("input",[`${count}`],["form-control","mb-0","rounded-right"]);
     searchInput.type = "text";
-    searchInput.classList.add("form-control");
-    searchInput.classList.add("mb-0");
-    searchInput.classList.add("rounded-right");
-    searchForm.appendChild(searchInput);
+    return searchInput
+}
+
+function CreateSearchP(headerText,count) {
+    var searchP = CreateElement("p",[`headerText${count}`],["headerText","col-2","mb-0","align-items-center","d-flex","flex-row-reverse","input-group-addon","border","rounded-left"]);
+    searchP.innerText = headerText;
+    return searchP;
+}
+
+function CreateElement(tagName,idList,classList){
+    var element = document.createElement(tagName);
+    idList.forEach((id)=>{
+        element.id = id;
+    });
+    classList.forEach((addClass) =>{
+        element.classList.add(addClass);
+    });
+    return element;
 }
