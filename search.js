@@ -2,12 +2,8 @@
  * bootsrap
  * クエリパラメータ
  */
-//var headerText = document.getElementById("headerText").innerText;
-//var searchInput = document.getElementById("input");
-//var searchButton = document.getElementById("search");
 var searchesArea = document.getElementById("searches");
 
-//var headers = ["C#","JavaScript","minecraft"];
 var queries = location.search.split(',');
 queries.shift();
 var inputs = new Array();
@@ -63,7 +59,6 @@ function addSearchObj(headerText) {
     searchForm.onsubmit = 'return false';
     searchForm.setAttribute('onsubmit', 'return false');
     searchForm.classList.add("p-0");
-    //searchForm.classList.add("col-10");
     searchForm.classList.add("mb-2");
     searchForm.classList.add("input-group");
     searchDiv.appendChild(searchForm);
@@ -79,13 +74,9 @@ function addSearchObj(headerText) {
     searchP.classList.add("d-flex");
     searchP.classList.add("flex-row-reverse");
     searchP.classList.add("input-group-addon");
-    //searchP.classList.add("border-right-0");
     searchP.classList.add("border");
     searchP.classList.add("rounded-left");
-    //searchP.classList.add("rounded-left");
     searchForm.appendChild(searchP);
-
-
 
     //input生成
     var searchInput = document.createElement("input");
@@ -95,11 +86,4 @@ function addSearchObj(headerText) {
     searchInput.classList.add("mb-0");
     searchInput.classList.add("rounded-right");
     searchForm.appendChild(searchInput);
-
-    /**
-     *  <div class="input-group">
-            <span class="input-group-addon">Text</span>
-            <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
-        </div>
-     */
 }
