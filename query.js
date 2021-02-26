@@ -1,4 +1,4 @@
-var urlLabel = document.getElementById("url");
+var urlLabel = document.getElementById('url-text');
 urlLabel.innerText = location.href.split('?,')[0];
 console.log(urlLabel.innerText);
 urlLabel.innerText += '?';
@@ -12,6 +12,14 @@ queries.forEach((e)=>{
 var copyButton = document.getElementById('copy-button');
 copyButton.onclick = () =>{
     console.log('push');
-    urlLabel.select();
-    document.execCommand("Copy");
+    // コピー内容を選択する.
+    let range = document.createRange();
+    range.selectNodeContents(urlLabel);
+    let selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    // 選択したものをコピーする.
+    document.execCommand('copy');
+    // コピー内容の選択を解除する.
+    selection.removeAllRanges();
 }

@@ -55,6 +55,7 @@ function addSearchObj(headerText) {
     //input生成
     var searchInput = CreateSearchInput(count);
     searchForm.appendChild(searchInput);
+
 }
 
 function CreateForm(count) {
@@ -72,6 +73,22 @@ function CreateDiv(count) {
 function CreateSearchInput(count) {
     var searchInput = CreateElement("input",[`${count}`],["form-control","mb-0","rounded-right","col-sm-8","col-md-10"]);
     searchInput.type = "text";
+    $(`${count}`).autocomplete({
+        source: (request, response) => {
+            $.ajax({
+                url: "http://www.google.com/complete/search",
+                data: {hl:'ja', client:'firefox', q: request.term},
+                dataType: "jsonp",
+                type: "GET",
+                success :(data) => {
+                    response(data[1]);
+                }
+            });
+        },
+        autoFocus: true,
+        delay: 300,
+        minLength: 2,
+    });
     return searchInput
 }
 
