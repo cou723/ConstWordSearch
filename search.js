@@ -101,7 +101,7 @@ function CreateSearchDeleteButton(count) {
         query.shift();
         //console.log(query);
         for (var i = 0; i < query.length; i++) {
-            if (query[i] == document.getElementById(`headerText${count}`).innerText) {
+            if (query[i] == encodeURI(document.getElementById(`headerText${count}`).innerText)) {
                 query.splice(i,1);
                 break;
             }
