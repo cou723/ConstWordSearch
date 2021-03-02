@@ -1,9 +1,12 @@
 var urlLabel = document.getElementById('url-text');
 urlLabel.innerText = location.href.split('?,')[0];
 console.log(urlLabel.innerText);
-urlLabel.innerText += '?';
+
 var queries = location.href.split(',');
 queries.shift();
+if(queries.length != 0){
+    urlLabel.innerText += '?';
+}
 console.log(queries);
 queries.forEach((e)=>{
     urlLabel.innerText += `,${e}`;
