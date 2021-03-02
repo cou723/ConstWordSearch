@@ -50,45 +50,83 @@ function addSearchObj(headerText) {
     var searchForm = CreateForm(count);
     searchDiv.appendChild(searchForm);
     //p生成
-    var searchP = CreateSearchP(headerText,count);
+    var searchP = CreateSearchP(headerText, count);
     searchForm.appendChild(searchP);
     //input生成
     var searchInput = CreateSearchInput(count);
     searchForm.appendChild(searchInput);
+    //deleteButton作成
+    var searchDeleteButton = CreateSearchDeleteButton(count);
+    searchForm.appendChild(searchDeleteButton);
 
 }
 
 function CreateForm(count) {
-    var searchForm = CreateElement("form",[`searchForm${count}`],["p-0","mb-2","input-group"]);
+    var searchForm = CreateElement("form", [`searchForm${count}`], ["p-0", "mb-2", "input-group"]);
     searchForm.onsubmit = 'return false';
     searchForm.setAttribute('onsubmit', 'return false');
     return searchForm;
 }
 
 function CreateDiv(count) {
-    var searchDiv = CreateElement("div",[`search${count}`],["row"]);
+    var searchDiv = CreateElement("div", [`search${count}`], ["row"]);
     return searchDiv;
 }
 
 function CreateSearchInput(count) {
-    var searchInput = CreateElement("input",[`${count}`],["form-control","mb-0","rounded-right","col-sm-8","col-md-10"]);
+    var searchInput = CreateElement("input", [`${count}`], ["form-control", "mb-0", "rounded-right", "col-sm-8", "col-md-10"]);
     searchInput.type = "text";
     AutocompleteInit();
     return searchInput
 }
 
-function CreateSearchP(headerText,count) {
-    var searchP = CreateElement("p",[`headerText${count}`],["headerText","col-2","mb-0","align-items-center","d-flex","flex-row-reverse","input-group-addon","border","rounded-left","col-sm-4","col-md-2"]);
+function CreateSearchP(headerText, count) {
+    var searchP = CreateElement("p", [`headerText${count}`], ["headerText", "col-2", "mb-0", "align-items-center", "d-flex", "flex-row-reverse", "input-group-addon", "border", "col-sm-4", "col-md-2"]);
     searchP.innerText = headerText;
     return searchP;
 }
 
-function CreateElement(tagName,idList,classList){
+function CreateSearchDeleteButton(count) {
+    var searchDeleteButton = CreateElement("button", [`deleteButton${count}`], ["btn", "btn-outline-warning", "ml-1"]);
+    searchDeleteButton.innerText = "削除";
+    searchDeleteButton.onclick = () => {
+        console.log(`delete:${searchDeleteButton.id.substr(12, searchDeleteButton.id.length)}`);
+        /**方法1
+         * q書き換え、リロード
+         *
+         */
+        //書き換え
+        var query = location.search.split(',');
+        //console.log(query);
+        query.shift();
+        //console.log(query);
+        for (var i = 0; i < query.length; i++) {
+            if (query[i] == document.getElementById(`headerText${count}`).innerText) {
+                query.splice(i,1);
+                break;
+            }
+        }
+        console.log(query);
+        var newQuery = "?,";
+        query.forEach((element)=>{
+            newQuery += element + ",";
+        })
+        newQuery = newQuery.slice(0,-1);
+        //リロード
+        console.log(location.search);
+        console.log(newQuery);
+        location.search = newQuery;
+
+    }
+    return searchDeleteButton;
+}
+
+function CreateElement(tagName, idList, classList) {
     var element = document.createElement(tagName);
-    idList.forEach((id)=>{
+    idList.forEach((id) => {
         element.id = id;
     });
-    classList.forEach((addClass) =>{
+    classList.forEach((addClass) => {
         element.classList.add(addClass);
     });
     return element;
@@ -99,10 +137,10 @@ function AutocompleteInit(count) {
         source: (request, response) => {
             $.ajax({
                 url: "http://www.google.com/complete/search",
-                data: {hl:'ja', client:'firefox', q: request.term},
+                data: { hl: 'ja', client: 'firefox', q: request.term },
                 dataType: "jsonp",
                 type: "GET",
-                success :(data) => {
+                success: (data) => {
                     response(data[1]);
                 }
             });
@@ -114,15 +152,15 @@ function AutocompleteInit(count) {
     console.log("log");
 }
 
-$(document).ready(()=>{
+$(document).ready(() => {
     $('url-text').autocomplete({
         source: (request, response) => {
             $.ajax({
                 url: "http://www.google.com/complete/search",
-                data: {hl:'ja', client:'firefox', q: request.term},
+                data: { hl: 'ja', client: 'firefox', q: request.term },
                 dataType: "jsonp",
                 type: "GET",
-                success :(data) => {
+                success: (data) => {
                     response(data[1]);
                 }
             });
