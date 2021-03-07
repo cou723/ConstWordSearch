@@ -37,7 +37,7 @@ function Search(index) {
     searchString = encodeURIComponent(searchString);
     var query = `q=${searchString}&oq=${searchString}`;
     var url = "https://www.google.com/search?" + query;
-    window.open(url, "_blank");
+    window.location.href = url;
 }
 
 function addSearchObj(headerText) {
