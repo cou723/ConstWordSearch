@@ -16,7 +16,8 @@ queries.forEach(query => {
 });
 
 for (let _i = 0; _i < inputs.length; _i++) {
-    inputs[_i].on('keydown', (e) => {
+    $(`#${_i}`).on('keydown', (e) => {
+        console.log('keydown取得');
         if (e.keyCode === 13) {
             search(_i);
         }
@@ -37,6 +38,7 @@ function search(index) {
 
 function addSearchObj(headerText) {
     var count = $('#searches').length;
+    console.log(count);
     console.log("call:addSearchObj:" + headerText);
     //div生成
     createDiv(count);
@@ -73,15 +75,19 @@ function createSearchInput(count) {
 function createSearchDeleteButton(count) {
     $(`#searchForm${count}`).append(`<button id="deleteButton${count}">削除</button>`);
     $(`#deleteButton${count}`).addClass(`btn btn-outline-warning ml-1`);
+    $(`#deleteButton${count}`).attr({'type':'button'});
     $(`#deleteButton${count}`).on('click', () => {
+        console.log('delete word !!');
         //console.log(`delete:${$(`#deleteButton${count}`).id.substr(12, $(`#deleteButton${count}`).id.length)}`);
-        /**方法1
-         * q書き換え、リロード
-         *
-         */
-        //書き換え
+        //やってること:削除が押された内容をurlから消してリロード
+        //消す単語の取得
+        var deleteWord = encodeURI($(`headerText${count}`).text())
+        console.log(`delete word:${deleteWord}`);
+        //現在のクエリの取得
         var queries = location.search.split(',').pop();
         console.log(queries);
+
+        var elements = new Array();
         for (var i = 0; i < queries.length; i++) {
             if (queries[i] == encodeURI($(`headerText${count}`).text())) {
                 queries.splice(i, 1);
@@ -95,7 +101,6 @@ function createSearchDeleteButton(count) {
         newQuery = newQuery.slice(0, -1);
         //リロード
         location.search = newQuery;
-
     })
 }
 
