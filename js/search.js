@@ -57,9 +57,9 @@ function createDiv(count) {
 }
 
 function createForm(count) {
-    $(`#search${count}`).append(`<form id="searchForm${count}"></form>`);
+    $(`#search${count}`).append(`<form id="searchForm${count}" onsubmit="return false;"></form>`);
     $(`#searchForm${count}`).addClass('p-0 mb-2 input-group');
-    $(`#searchFrom${count}`).attr('onsubmit', 'return false;');
+    $(`#searchFrom${count}`).attr({'onsubmit': 'return false;'});
 }
 function createSearchP(headerText, count) {
     $(`#searchForm${count}`).append(`<p id="headerText${count}">${headerText}</p>`);
@@ -74,22 +74,22 @@ function createSearchDeleteButton(count) {
     $(`#searchForm${count}`).append(`<button id="deleteButton${count}">削除</button>`);
     $(`#deleteButton${count}`).addClass(`btn btn-outline-warning ml-1`);
     $(`#deleteButton${count}`).on('click', () => {
-        console.log(`delete:${searchDeleteButton.id.substr(12, searchDeleteButton.id.length)}`);
+        //console.log(`delete:${$(`#deleteButton${count}`).id.substr(12, $(`#deleteButton${count}`).id.length)}`);
         /**方法1
          * q書き換え、リロード
          *
          */
         //書き換え
-        var query = location.search.split(',').shift();
-        //console.log(query);
-        for (var i = 0; i < query.length; i++) {
-            if (query[i] == encodeURI(document.getElementById(`headerText${count}`).innerText)) {
-                query.splice(i, 1);
+        var queries = location.search.split(',').pop();
+        console.log(queries);
+        for (var i = 0; i < queries.length; i++) {
+            if (queries[i] == encodeURI($(`headerText${count}`).text())) {
+                queries.splice(i, 1);
                 break;
             }
         }
         var newQuery = "?,";
-        query.forEach((element) => {
+        queries.forEach((element) => {
             newQuery += element + ",";
         })
         newQuery = newQuery.slice(0, -1);
