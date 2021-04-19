@@ -53,6 +53,7 @@ function addSearchObj(headerText) {
 //div要素の作成
 function createDiv(count) {
     $('#searches').append(`<div id="search${count}"></div>`);
+    $(`#search${count}`).addClass('row p-0');
 }
 
 function createForm(count) {
