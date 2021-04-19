@@ -1,4 +1,4 @@
-$('#url-text').text() = location.href.split('?,')[0];
+$('#url-text').text(location.href.split('?,')[0]);
 console.log($('#url-text').text());
 
 var queries = location.href.split(',');

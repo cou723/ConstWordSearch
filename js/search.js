@@ -8,125 +8,94 @@ var queries = location.search.split(',');
 queries.shift();
 var inputs = new Array();
 var i = 0;
-queries.forEach(element => {
-    addSearchObj(decodeURIComponent(element));
+queries.forEach(query => {
+    console.log('query取得:' + query);
+    addSearchObj(decodeURIComponent(query));
     inputs.push($(`#${i}`));
     i++;
 });
 
-console.log(inputs.length);
-console.log(inputs);
 for (let _i = 0; _i < inputs.length; _i++) {
-    console.log(_i);
-    console.log(inputs[_i]);
-    inputs[_i].addEventListener('keydown', (e) => {
+    inputs[_i].on('keydown', (e) => {
         if (e.keyCode === 13) {
-            console.log("click");
-            Search(_i);
+            search(_i);
         }
     });
 }
 
-function Search(index) {
+function search(index) {
     //console.log(`headerText${index}[${header}]`);
     //console.log(`searchInput${index}[${input}]`);
+    console.log('search!!!!!!!!!!!!');
     var searchString = $(`headerText${index}`).text() + " " + $(`${index}`).val();
     searchString = encodeURIComponent(searchString);
     var query = `q=${searchString}&oq=${searchString}`;
     var url = "https://www.google.com/search?" + query;
-    window.location.href = url;
+    console.log(url);
+    //window.location.href = url;
 }
 
 function addSearchObj(headerText) {
-    var count = $('#searches').children;
+    var count = $('#searches').length;
     console.log("call:addSearchObj:" + headerText);
     //div生成
-    var searchDiv = CreateDiv(count);
-    $('#searches').append(searchDiv);
+    createDiv(count);
     //form生成
-    var searchForm = CreateForm(count);
-    searchDiv.appendChild(searchForm);
+    createForm(count);
     //p生成
-    var searchP = CreateSearchP(headerText, count);
-    searchForm.appendChild(searchP);
+    createSearchP(headerText, count);
     //input生成
-    var searchInput = CreateSearchInput(count);
-    searchForm.appendChild(searchInput);
+    createSearchInput(count);
     //deleteButton作成
-    var searchDeleteButton = CreateSearchDeleteButton(count);
-    searchForm.appendChild(searchDeleteButton);
-
+    createSearchDeleteButton(count);
 }
 
-function CreateForm(count) {
-    var searchForm = CreateElement("form", [`searchForm${count}`], ["p-0", "mb-2", "input-group"]);
-    searchForm.onsubmit = 'return false';
-    searchForm.setAttribute('onsubmit', 'return false');
-    return searchForm;
+//div要素の作成
+function createDiv(count) {
+    $('#searches').append(`<div id="search${count}"></div>`);
 }
 
-function CreateDiv(count) {
-    var searchDiv = CreateElement("div", [`search${count}`], ["row"]);
-    return searchDiv;
+function createForm(count) {
+    $(`#search${count}`).append(`<form id="searchForm${count}"></form>`);
+    $(`#searchForm${count}`).addClass('p-0 mb-2 input-group');
+    $(`#searchFrom${count}`).attr('onsubmit', 'return false;');
 }
-
-function CreateSearchInput(count) {
-    var searchInput = CreateElement("input", [`${count}`], ["form-control", "mb-0", "rounded-right", "col-sm-8", "col-md-10"]);
-    searchInput.type = "text";
-    AutocompleteInit();
-    return searchInput
+function createSearchP(headerText, count) {
+    $(`#searchForm${count}`).append(`<p id="headerText${count}">${headerText}</p>`);
+    $(`#headerText${count}`).addClass(`headerText col-2 mb-0 align-items-center d-flex flex-row-reverse input-group-addon border col-sm-4 col-md-2`);
 }
-
-function CreateSearchP(headerText, count) {
-    var searchP = CreateElement("p", [`headerText${count}`], ["headerText", "col-2", "mb-0", "align-items-center", "d-flex", "flex-row-reverse", "input-group-addon", "border", "col-sm-4", "col-md-2"]);
-    searchP.innerText = headerText;
-    return searchP;
+function createSearchInput(count) {
+    $(`#searchForm${count}`).append(`<input id="${count}">`);
+    $(`#${count}`).addClass(`form-control mb-0 rounded-right col-sm-8 col-md-10`);
+    $(`#${count}`).attr('type', 'text');
 }
-
-function CreateSearchDeleteButton(count) {
-    var searchDeleteButton = CreateElement("button", [`deleteButton${count}`], ["btn", "btn-outline-warning", "ml-1"]);
-    searchDeleteButton.innerText = "削除";
-    searchDeleteButton.onclick = () => {
+function createSearchDeleteButton(count) {
+    $(`#searchForm${count}`).append(`<button id="deleteButton${count}">削除</button>`);
+    $(`#deleteButton${count}`).addClass(`btn btn-outline-warning ml-1`);
+    $(`#deleteButton${count}`).on('click', () => {
         console.log(`delete:${searchDeleteButton.id.substr(12, searchDeleteButton.id.length)}`);
         /**方法1
          * q書き換え、リロード
          *
          */
         //書き換え
-        var query = location.search.split(',');
-        //console.log(query);
-        query.shift();
+        var query = location.search.split(',').shift();
         //console.log(query);
         for (var i = 0; i < query.length; i++) {
             if (query[i] == encodeURI(document.getElementById(`headerText${count}`).innerText)) {
-                query.splice(i,1);
+                query.splice(i, 1);
                 break;
             }
         }
-        console.log(query);
         var newQuery = "?,";
-        query.forEach((element)=>{
+        query.forEach((element) => {
             newQuery += element + ",";
         })
-        newQuery = newQuery.slice(0,-1);
+        newQuery = newQuery.slice(0, -1);
         //リロード
-        console.log(location.search);
-        console.log(newQuery);
         location.search = newQuery;
 
-    }
-    return searchDeleteButton;
-}
-
-function CreateElement(tagName, idList, classList) {
-    var element = document.createElement(tagName);
-    idList.forEach((id) => {
-        element.id = id;
-    });
-    classList.forEach((addClass) => {
-        element.classList.add(addClass);
-    });
-    return element;
+    })
 }
 
 function AutocompleteInit(count) {
@@ -166,5 +135,4 @@ $(document).ready(() => {
         delay: 300,
         minLength: 2,
     });
-    console.log("log");
 })
