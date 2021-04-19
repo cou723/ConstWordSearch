@@ -1,17 +1,16 @@
 /**自分的新要素
- * bootsrap
+ * bootstrap
  * クエリパラメータ
  */
-var searchesArea = document.getElementById("searches");
+//import { $ } from "jquery";
 
 var queries = location.search.split(',');
 queries.shift();
 var inputs = new Array();
 var i = 0;
 queries.forEach(element => {
-
     addSearchObj(decodeURIComponent(element));
-    inputs.push(document.getElementById(i));
+    inputs.push($(`#${i}`));
     i++;
 });
 
@@ -29,11 +28,9 @@ for (let _i = 0; _i < inputs.length; _i++) {
 }
 
 function Search(index) {
-    var header = document.getElementById(`headerText${index}`).innerText;
-    var input = document.getElementById(`${index}`).value;
     //console.log(`headerText${index}[${header}]`);
     //console.log(`searchInput${index}[${input}]`);
-    var searchString = header + " " + input;
+    var searchString = $(`headerText${index}`).text() + " " + $(`${index}`).val();
     searchString = encodeURIComponent(searchString);
     var query = `q=${searchString}&oq=${searchString}`;
     var url = "https://www.google.com/search?" + query;
@@ -41,11 +38,11 @@ function Search(index) {
 }
 
 function addSearchObj(headerText) {
-    var count = searchesArea.children.length;
+    var count = $('#searches').children;
     console.log("call:addSearchObj:" + headerText);
     //div生成
     var searchDiv = CreateDiv(count);
-    searchesArea.appendChild(searchDiv);
+    $('#searches').append(searchDiv);
     //form生成
     var searchForm = CreateForm(count);
     searchDiv.appendChild(searchForm);
