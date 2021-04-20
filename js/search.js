@@ -25,19 +25,18 @@ for (let _i = 0; _i < inputs.length; _i++) {
 }
 
 function search(index) {
-    //console.log(`headerText${index}[${header}]`);
-    //console.log(`searchInput${index}[${input}]`);
-    console.log('search!!!!!!!!!!!!');
-    var searchString = $(`headerText${index}`).text() + " " + $(`${index}`).val();
+    console.log('search!');
+    var searchString = $(`#headerText${index}`).text() + " " + $(`#${index}`).val();
     searchString = encodeURIComponent(searchString);
+    console.log(searchString);
     var query = `q=${searchString}&oq=${searchString}`;
     var url = "https://www.google.com/search?" + query;
     console.log(url);
-    //window.location.href = url;
+    window.location.href = url;
 }
 
 function addSearchObj(headerText) {
-    var count = $('#searches').length;
+    var count = $('#searches').children().length;
     console.log(count);
     console.log("call:addSearchObj:" + headerText);
     //div生成
@@ -76,6 +75,7 @@ function createSearchDeleteButton(count) {
     $(`#searchForm${count}`).append(`<button id="deleteButton${count}">削除</button>`);
     $(`#deleteButton${count}`).addClass(`btn btn-outline-warning ml-1`);
     $(`#deleteButton${count}`).attr({'type':'button'});
+    $(`#deleteButton${count}`).attr({'tabindex':'-1'});
     $(`#deleteButton${count}`).on('click', () => {
         console.log('delete word !!');
         //console.log(`delete:${$(`#deleteButton${count}`).id.substr(12, $(`#deleteButton${count}`).id.length)}`);
