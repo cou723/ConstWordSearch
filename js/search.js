@@ -69,7 +69,7 @@ function createSearchP(headerText, count) {
 function createSearchInput(count) {
     $(`#searchForm${count}`).append(`<input id="${count}">`);
     $(`#${count}`).addClass(`form-control mb-0 rounded-right col-sm-8 col-md-10`);
-    $(`#${count}`).attr('type', 'text');
+    $(`#${count}`).attr({'type': 'text','autocomplete':'off'});
 }
 function createSearchDeleteButton(count) {
     $(`#searchForm${count}`).append(`<button id="deleteButton${count}">削除</button>`);
