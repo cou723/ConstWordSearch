@@ -70,6 +70,22 @@ function createSearchInput(count) {
     $(`#searchForm${count}`).append(`<input id="${count}">`);
     $(`#${count}`).addClass(`form-control mb-0 rounded-right col-sm-8 col-md-10`);
     $(`#${count}`).attr({'type': 'text','autocomplete':'off'});
+    $(`#${count}`).autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: "http://www.google.com/complete/search",
+                data: {hl:'ja', client:'firefox', q: request.term},
+                dataType: "jsonp",
+                type: "GET",
+                success :function(data) {
+                    response(data[1]);
+                }
+            });
+        },
+        autoFocus: true,
+        delay: 300,
+        minLength: 2,
+    });
 }
 function createSearchDeleteButton(count) {
     $(`#searchForm${count}`).append(`<button id="deleteButton${count}">削除</button>`);
@@ -103,42 +119,3 @@ function createSearchDeleteButton(count) {
         location.search = newQuery;
     })
 }
-
-function AutocompleteInit(count) {
-    $(`${count}`).autocomplete({
-        source: (request, response) => {
-            $.ajax({
-                url: "http://www.google.com/complete/search",
-                data: { hl: 'ja', client: 'firefox', q: request.term },
-                dataType: "jsonp",
-                type: "GET",
-                success: (data) => {
-                    response(data[1]);
-                }
-            });
-        },
-        autoFocus: true,
-        delay: 300,
-        minLength: 2,
-    });
-    console.log("log");
-}
-
-$(document).ready(() => {
-    $('url-text').autocomplete({
-        source: (request, response) => {
-            $.ajax({
-                url: "http://www.google.com/complete/search",
-                data: { hl: 'ja', client: 'firefox', q: request.term },
-                dataType: "jsonp",
-                type: "GET",
-                success: (data) => {
-                    response(data[1]);
-                }
-            });
-        },
-        autoFocus: true,
-        delay: 300,
-        minLength: 2,
-    });
-})
