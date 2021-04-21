@@ -40,12 +40,18 @@
         <div class="jumbotron">
             <form>
                 <h1>Search keyword</h1>
+                <input type="text" class="form-control" id="input" placeholder="Please input keyword.">
                 <input type="text" class="form-control" id="keyword" placeholder="Please input keyword.">
             </form>
         </div>
+
     </div>
 
     <script type="text/javascript">
+        $('#input').on('keydown', () => {
+            console.log('keydown取得');
+            $('#keyword').val('jquery ' + $('#input').val());
+        });
         $(function () {
             $('#keyword').autocomplete({
                 source: function (request, response) {
