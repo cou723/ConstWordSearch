@@ -1,72 +1,19 @@
-/**自分的新要素
- * bootstrap
- * クエリパラメータ
- */
-//import { $ } from "jquery";
-
-var queries = location.search.split(',');
-queries.shift();
-var inputs = new Array();
-var i = 0;
-queries.forEach(query => {
-    console.log('query取得:' + query);
-    addSearchObj(decodeURIComponent(query));
-    inputs.push($(`#${i}`));
-    i++;
-});
-
-for (let _i = 0; _i < inputs.length; _i++) {
-    $(`#${_i}`).on('keydown', (e) => {
-        console.log('keydown取得');
-        if (e.keyCode === 13) {
-            search(_i);
-        }
-    });
-}
-
-function search(index) {
-    console.log('search!');
-    var searchString = $(`#headerText${index}`).text() + " " + $(`#${index}`).val();
-    searchString = encodeURIComponent(searchString);
-    console.log(searchString);
-    var query = `q=${searchString}&oq=${searchString}`;
-    var url = "https://www.google.com/search?" + query;
-    console.log(url);
-    window.location.href = url;
-}
-
-function addSearchObj(headerText) {
-    var count = $('#searches').children().length;
-    console.log(count);
-    console.log("call:addSearchObj:" + headerText);
-    //div生成
-    createDiv(count);
-    //form生成
-    createForm(count);
-    //p生成
-    createSearchP(headerText, count);
-    //input生成
-    createSearchInput(count);
-    //deleteButton作成
-    createSearchDeleteButton(count);
-}
-
 //div要素の作成
-function createDiv(count) {
+export function createDiv(count) {
     $('#searches').append(`<div id="search${count}"></div>`);
     $(`#search${count}`).addClass('row p-0');
 }
 
-function createForm(count) {
+export function createForm(count) {
     $(`#search${count}`).append(`<form id="searchForm${count}" onsubmit="return false;"></form>`);
     $(`#searchForm${count}`).addClass('p-0 mb-2 input-group');
     $(`#searchFrom${count}`).attr({'onsubmit': 'return false;'});
 }
-function createSearchP(headerText, count) {
+export function createSearchP(headerText, count) {
     $(`#searchForm${count}`).append(`<p id="headerText${count}">${headerText}</p>`);
     $(`#headerText${count}`).addClass(`headerText col-2 mb-0 align-items-center d-flex flex-row-reverse input-group-addon border col-sm-4 col-md-2`);
 }
-function createSearchInput(count) {
+export function createSearchInput(count) {
     $(`#searchForm${count}`).append(`<input id="${count}">`);
     $(`#${count}`).addClass(`form-control mb-0 rounded-right col-sm-8 col-md-10`);
     $(`#${count}`).attr({'type': 'text','autocomplete':'off'});
@@ -87,7 +34,7 @@ function createSearchInput(count) {
         minLength: 2,
     });
 }
-function createSearchDeleteButton(count) {
+export function createSearchDeleteButton(count) {
     $(`#searchForm${count}`).append(`<button id="deleteButton${count}">削除</button>`);
     $(`#deleteButton${count}`).addClass(`btn btn-outline-warning ml-1`);
     $(`#deleteButton${count}`).attr({'type':'button'});

@@ -1,4 +1,4 @@
-$('#copy-button').on('click', () => {
+export function copyText() {
     console.log('push');
     // コピー内容を選択する.
     let range = document.createRange();
@@ -10,4 +10,4 @@ $('#copy-button').on('click', () => {
     document.execCommand('copy');
     // コピー内容の選択を解除する.
     selection.removeAllRanges();
-});
+}

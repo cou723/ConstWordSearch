@@ -1,0 +1,20 @@
+{
+  "name": "const_word_search",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Cou01000111/ConstWordSearch",
+  "author": "courange <courange.c@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode=development"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.5.5",
+    "jquery": "^3.6.0",
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.3.4",
+    "webpack": "^5.39.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
