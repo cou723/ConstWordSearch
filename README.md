@@ -10,6 +10,8 @@ https://cou01000111.github.io/ConstWordSearch
 注:このサイトはurlにあるクエリパラメータで単語を管理しているので、もしwebページ上で自分が編集したとしてもその編集したURLをお気に入りに登録しなおさないと編集結果が残りません
 
 ## release note
+1.5.0:webpackの使用開始
+
 1.4.2:URLコピー機能が使えるようになった
 
 1.4.1:まともにつかえるようになった
@@ -18,4 +20,3 @@ https://cou01000111.github.io/ConstWordSearch
 
 
 3.3以前:わすれた
-
