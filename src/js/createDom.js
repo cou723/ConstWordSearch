@@ -26,6 +26,7 @@ export function createSearchInput(count) {
   $(`#searchForm${count}`).append(`<input id="${count}">`);
   $(`#${count}`).addClass(`form-control mb-0 rounded-right col-sm-8 col-md-10`);
   $(`#${count}`).attr({ type: "text", autocomplete: "off" });
+  // ajaxを用いたオートコンプリート機能、GitHub Pagesでうまく動作しないためコメントアウト
   //$(`#${count}`).autocomplete({
   //  source: function (request, response) {
   //    $.ajax({
@@ -56,6 +57,6 @@ export function createSearchDeleteButton(count) {
     var deleteWord = $(`#headerText${count}`).text();
     console.log(`delete word:${deleteWord}`);
     removeWordStorage(deleteWord);
-    //location.reload();
+    location.reload();
   });
 }
