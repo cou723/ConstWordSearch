@@ -12,6 +12,8 @@ https://cou01000111.github.io/ConstWordSearch
 
 ## release note
 
+1.6.1: 削除できないバグを修正
+
 1.6.0: 登録単語の記憶を、クエリパラメータからlocal storageに変更したため、編集するたびにURLを更新しなくていいようになった
 
 1.5.0: webpackの使用開始
