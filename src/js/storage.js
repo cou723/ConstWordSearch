@@ -1,11 +1,12 @@
+import utils from "./utils.js";
 export var LOCAL_STORAGE_KEY = "cow-search";
 
 export function loadStorage() {
-  console.log("[CALL]loadStorage");
+  debug("[CALL]loadStorage");
   var data = localStorage.getItem(LOCAL_STORAGE_KEY);
   var dataObject;
   var error;
-  console.log(data);
+  debug(data);
   try {
     dataObject = JSON.parse(data);
   } catch (error) {
@@ -19,14 +20,14 @@ export function loadStorage() {
 }
 
 export function addWordStorage(word) {
-  console.log("[CALL]addWordStorage");
+  debug("[CALL]addWordStorage");
   var data = loadStorage();
   data.word_list.push(word);
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
 }
 
 export function removeWordStorage(word) {
-  console.log("[CALL]removeWordStorage", word);
+  debug("[CALL]removeWordStorage", word);
   var data = loadStorage();
   data.word_list = data.word_list.filter((item) => item != word);
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));

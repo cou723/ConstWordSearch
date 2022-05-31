@@ -1,5 +1,6 @@
 import { removeWordStorage } from "./storage";
 import $ from "jquery";
+import utils from "./utils.js";
 
 //div要素の作成
 export function createDiv(count) {
@@ -52,10 +53,10 @@ export function createSearchDeleteButton(count) {
   $(`#deleteButton${count}`).attr({ type: "button" });
   $(`#deleteButton${count}`).attr({ tabindex: "-1" });
   $(`#deleteButton${count}`).on("click", () => {
-    console.log("[PUSH]delete word");
-    console.log($(`#headerText${count}`)[0]);
+    debug("[PUSH]delete word");
+    debug($(`#headerText${count}`)[0]);
     var deleteWord = $(`#headerText${count}`).text();
-    console.log(`delete word:${deleteWord}`);
+    debug(`delete word:${deleteWord}`);
     removeWordStorage(deleteWord);
     location.reload();
   });

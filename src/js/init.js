@@ -1,10 +1,11 @@
 import { addSearchBox } from "./searchBox";
 import { loadStorage } from "./storage";
 import pack_json from "../../package.json";
+import utils from "./utils.js";
 
 export function init(params) {
   var storage = loadStorage();
-  //console.log(storage);
+  //debug(storage);
   draw(storage.word_list);
   setVersion();
   setURL();
