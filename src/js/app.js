@@ -3,13 +3,11 @@ import { addSearchBox } from "./searchBox";
 import { init } from "./init";
 import { addWordStorage } from "./storage";
 
-export const DEBUG_MODE = 1;
 $("#add-word-button").on("click", addButtonClick);
 init();
 //dataReturnProcess();
 
 function addButtonClick() {
-  debug("push!");
   var word = $("#add-word-input").val();
   if (word === "") {
     alert("単語を入力してください");

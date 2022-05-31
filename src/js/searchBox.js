@@ -18,7 +18,7 @@ export function addSearchBox(headerText) {
   createSearchDeleteButton(id);
   $(`#${id}`).on("keydown", (e) => {
     debug("keydown取得");
-    if (e.keyCode === 13) {
+    if (e.key === 'Enter') {
       search(id);
     }
   });

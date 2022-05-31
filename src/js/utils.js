@@ -1,5 +1,4 @@
-import DEBUG_MODE from "./app.js";
-
+const DEBUG_MODE = 1;
 export function debug(output) {
-  if (DEBUG_MODE) debug(output);
+  if (DEBUG_MODE) console.log(output);
 }

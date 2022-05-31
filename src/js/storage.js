@@ -1,4 +1,4 @@
-import utils from "./utils.js";
+import { debug } from "./utils.js";
 export var LOCAL_STORAGE_KEY = "cow-search";
 
 export function loadStorage() {
