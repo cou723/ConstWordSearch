@@ -4,19 +4,21 @@ export var LOCAL_STORAGE_KEY = "cow-search";
 export function loadStorage() {
   debug("[CALL]loadStorage");
   var data = localStorage.getItem(LOCAL_STORAGE_KEY);
-  var dataObject;
-  var error;
-  debug(data);
-  try {
-    dataObject = JSON.parse(data);
-  } catch (error) {
-    error = true;
-  }
-  if (data == null || error) {
+  let JSONdata;
+  if (data == null || data == "")
     return {
       word_list: [],
     };
-  } else return dataObject;
+  try {
+    JSONdata = JSON.parse(data);
+  } catch (error) {
+    console.error(error);
+    console.error(data + "をjsonに変換できませんでした");
+    return {
+      word_list: [],
+    };
+  }
+  return JSONdata;
 }
 
 export function addWordStorage(word) {
