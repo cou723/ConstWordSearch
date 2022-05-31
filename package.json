@@ -1,6 +1,6 @@
 {
   "name": "const_word_search",
-  "version": "1.6.1",
+  "version": "1.7",
   "main": "index.js",
   "repository": "https://github.com/Cou01000111/ConstWordSearch",
   "author": "kamiya cou <courange.c@gmail.com>",
@@ -9,7 +9,6 @@
     "build": "webpack --mode=development"
   },
   "dependencies": {
-    "@types/jquery": "^3.5.5",
     "jquery": "^3.6.0",
     "webpack": "^5.39.1",
     "webpack-cli": "^4.7.2",
