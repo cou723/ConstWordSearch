@@ -11,8 +11,8 @@ export function init(params) {
 }
 
 function draw(word_list) {
-  //console.log(word_list);
-  if (word_list[0] != "") for (const word of word_list) addSearchBox(word);
+  if (word_list[0] != "") return;
+  for (const word of word_list) addSearchBox(word);
 }
 
 function setVersion() {
