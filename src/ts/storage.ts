@@ -1,3 +1,4 @@
+import { SearchBox } from "./class.js";
 import { debug } from "./utils.js";
 export var LOCAL_STORAGE_KEY = "cow-search";
 
@@ -19,14 +20,14 @@ export function loadStorage() {
   return JSONdata;
 }
 
-export function addWordStorage(word: string) {
+export function addWordStorage(searchBox: SearchBox) {
   var data = loadStorage();
-  data.word_list.push(word);
+  data.word_list.push(searchBox.headerText);
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
 }
 
-export function removeWordStorage(word: string) {
+export function removeWordStorage(searchBox: SearchBox) {
   var data = loadStorage();
-  data.word_list = data.word_list.filter((item: string) => item != word);
+  data.word_list = data.word_list.filter((item: string) => item != searchBox.headerText);
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
 }

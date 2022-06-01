@@ -2,33 +2,23 @@ import $ from "jquery";
 import { addSearchBox } from "./searchBox";
 import { init } from "./init";
 import { addWordStorage } from "./storage";
+import { SearchBox } from "./class";
+
 
 $("#add-word-button").on("click", addButtonClick);
 init();
 //dataReturnProcess();
 
-// class SearchBox {
-//   static latest_id: number;
-//   readonly id: number;
-//   readonly header_text: string;
-
-//   constructor(header_text: string) {
-//     this.header_text = header_text;
-//     this.id = SearchBox.latest_id;
-//     SearchBox.latest_id++;
-//   }
-// }
-
 function addButtonClick() {
-  var input_value: any = $("#add-word-input").val();
-  if (typeof input_value === "undefined") {
+  var inputValue: any = $("#add-word-input").val();
+  if (typeof inputValue === "undefined") {
     alert("単語を入力してください");
     return;
   }
-  if (typeof input_value !== "string")
+  if (typeof inputValue !== "string")
     return;
 
-  var word: string = input_value;
-  addSearchBox(word);
-  addWordStorage(word);
+  var searchBox: SearchBox = new SearchBox(inputValue);
+  addSearchBox(searchBox);
+  addWordStorage(searchBox);
 }

@@ -2,6 +2,7 @@ import { addSearchBox } from "./searchBox";
 import { loadStorage } from "./storage";
 import pack_json from "./package.json";
 import { debug } from "./utils.js";
+import { SearchBox } from "./class";
 
 export function init() {
   debug("run");
@@ -10,12 +11,12 @@ export function init() {
   setVersion();
 }
 
-function setSearchBox(word_list: string[]) {
-  if (word_list[0] == "") {
+function setSearchBox(searchBoxList: SearchBox[]) {
+  if (searchBoxList.length == 0) {
     console.info("前回のword_listは空か存在しません");
-    return ;
+    return;
   }
-  for (const word of word_list) addSearchBox(word);
+  for (const searchBox of searchBoxList) addSearchBox(searchBox);
 }
 
 function setVersion() {

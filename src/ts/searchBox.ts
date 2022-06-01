@@ -6,20 +6,20 @@ import {
   createSearchInput,
   createSearchDeleteButton,
 } from "./createDom.js";
+import { SearchBox } from "./class";
 
-export function addSearchBox(headerText: string) {
-  var id = $("#searches").children().length;
-  debug(id);
-  debug("call:addSearchBox:" + headerText);
-  createDiv(id);
-  createForm(id);
-  createSearchP(headerText, id);
-  createSearchInput(id);
-  createSearchDeleteButton(id);
-  $(`#${id}`).on("keydown", (e) => {
+export function addSearchBox(searchBox: SearchBox) {
+  debug(searchBox.id);
+  debug("call:addSearchBox:" + searchBox.headerText);
+  createDiv(searchBox.id);
+  createForm(searchBox.id);
+  createSearchP(searchBox);
+  createSearchInput(searchBox.id);
+  createSearchDeleteButton(searchBox);
+  $(`#${searchBox.id}`).on("keydown", (e) => {
     debug("keydown取得");
     if (e.key === "Enter") {
-      search(id);
+      search(searchBox.id);
     }
   });
 }
