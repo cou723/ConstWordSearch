@@ -1,39 +1,34 @@
-import { debug } from "./utils.js";
-import {
-  createDiv,
-  createForm,
-  createSearchP,
-  createSearchInput,
-  createSearchDeleteButton,
-} from "./createDom.js";
-
-export function addSearchBox(headerText) {
-  var id = $("#searches").children().length;
-  debug(id);
-  debug("call:addSearchBox:" + headerText);
-  createDiv(id);
-  createForm(id);
-  createSearchP(headerText, id);
-  createSearchInput(id);
-  createSearchDeleteButton(id);
-  $(`#${id}`).on("keydown", (e) => {
-    debug("keydown取得");
-    if (e.key === "Enter") {
-      search(id);
-    }
-  });
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getWordList = exports.addSearchBox = void 0;
+var utils_js_1 = require("./utils.js");
+var createDom_js_1 = require("./createDom.js");
+function addSearchBox(headerText) {
+    var id = $("#searches").children().length;
+    utils_js_1.debug(id);
+    utils_js_1.debug("call:addSearchBox:" + headerText);
+    createDom_js_1.createDiv(id);
+    createDom_js_1.createForm(id);
+    createDom_js_1.createSearchP(headerText, id);
+    createDom_js_1.createSearchInput(id);
+    createDom_js_1.createSearchDeleteButton(id);
+    $("#" + id).on("keydown", function (e) {
+        utils_js_1.debug("keydown取得");
+        if (e.key === "Enter") {
+            search(id);
+        }
+    });
 }
-
+exports.addSearchBox = addSearchBox;
 function search(index) {
-  debug("search!");
-  var searchString =
-    $(`#headerText${index}`).text() + " " + $(`#${index}`).val();
-  searchString = encodeURIComponent(searchString);
-  debug(searchString);
-  var query = `q=${searchString}&oq=${searchString}`;
-  var url = "https://www.google.com/search?" + query;
-  debug(url);
-  window.location.href = url;
+    utils_js_1.debug("search!");
+    var searchString = $("#headerText" + index).text() + " " + $("#" + index).val();
+    searchString = encodeURIComponent(searchString);
+    utils_js_1.debug(searchString);
+    var query = "q=" + searchString + "&oq=" + searchString;
+    var url = "https://www.google.com/search?" + query;
+    utils_js_1.debug(url);
+    window.location.href = url;
 }
-
-export function getWordList() {}
+function getWordList() { }
+exports.getWordList = getWordList;

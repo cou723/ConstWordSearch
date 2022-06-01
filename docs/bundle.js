@@ -19,25 +19,14 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 
 /***/ }),
 
-/***/ "./package.json":
-/*!**********************!*\
-  !*** ./package.json ***!
-  \**********************/
-/***/ ((module) => {
-
-"use strict";
-eval("module.exports = JSON.parse('{\"name\":\"const_word_search\",\"version\":\"1.7\",\"main\":\"index.js\",\"repository\":\"https://github.com/Cou01000111/ConstWordSearch\",\"author\":\"kamiya cou <courange.c@gmail.com>\",\"license\":\"MIT\",\"scripts\":{\"build\":\"webpack --mode=development\"},\"dependencies\":{\"jquery\":\"^3.6.0\",\"webpack\":\"^5.39.1\",\"webpack-cli\":\"^4.7.2\",\"webpack-dev-server\":\"^3.11.2\"}}');\n\n//# sourceURL=webpack://const_word_search/./package.json?");
-
-/***/ }),
-
 /***/ "./src/js/app.js":
 /*!***********************!*\
   !*** ./src/js/app.js ***!
   \***********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _searchBox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./searchBox */ \"./src/js/searchBox.js\");\n/* harmony import */ var _init__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./init */ \"./src/js/init.js\");\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./storage */ \"./src/js/storage.js\");\n\r\n\r\n\r\n\r\n\r\nclass SearchBox {\r\n  static latestId;\r\n  constructor(word) {\r\n    this.id = latestId;\r\n    this.word = word;\r\n    this.latestId++;\r\n  }\r\n}\r\n\r\njquery__WEBPACK_IMPORTED_MODULE_0___default()(\"#add-word-button\").on(\"click\", addButtonClick);\r\n(0,_init__WEBPACK_IMPORTED_MODULE_2__.init)();\r\n//dataReturnProcess();\r\n\r\nfunction addButtonClick() {\r\n  var word = jquery__WEBPACK_IMPORTED_MODULE_0___default()(\"#add-word-input\").val();\r\n  if (word === \"\") {\r\n    alert(\"単語を入力してください\");\r\n  } else {\r\n    (0,_searchBox__WEBPACK_IMPORTED_MODULE_1__.addSearchBox)(word);\r\n    (0,_storage__WEBPACK_IMPORTED_MODULE_3__.addWordStorage)(word);\r\n  }\r\n}\r\n\n\n//# sourceURL=webpack://const_word_search/./src/js/app.js?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nvar jquery_1 = __importDefault(__webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\"));\r\nvar searchBox_1 = __webpack_require__(/*! ./searchBox */ \"./src/js/searchBox.js\");\r\nvar init_1 = __webpack_require__(/*! ./init */ \"./src/js/init.js\");\r\nvar storage_1 = __webpack_require__(/*! ./storage */ \"./src/js/storage.js\");\r\njquery_1.default(\"#add-word-button\").on(\"click\", addButtonClick);\r\ninit_1.init();\r\n//dataReturnProcess();\r\nfunction addButtonClick() {\r\n    var input_text = jquery_1.default(\"#add-word-input\").val();\r\n    if (typeof input_text === \"undefined\") {\r\n        alert(\"単語を入力してください\");\r\n        return;\r\n    }\r\n    if (typeof input_text !== \"string\")\r\n        return;\r\n    var word = input_text;\r\n    searchBox_1.addSearchBox(word);\r\n    storage_1.addWordStorage(word);\r\n}\r\n\n\n//# sourceURL=webpack://const_word_search/./src/js/app.js?");
 
 /***/ }),
 
@@ -45,10 +34,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jque
 /*!*****************************!*\
   !*** ./src/js/createDom.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createDiv\": () => (/* binding */ createDiv),\n/* harmony export */   \"createForm\": () => (/* binding */ createForm),\n/* harmony export */   \"createSearchP\": () => (/* binding */ createSearchP),\n/* harmony export */   \"createSearchInput\": () => (/* binding */ createSearchInput),\n/* harmony export */   \"createSearchDeleteButton\": () => (/* binding */ createSearchDeleteButton)\n/* harmony export */ });\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ \"./src/js/storage.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.js */ \"./src/js/utils.js\");\n\r\n\r\n\r\n\r\n//div要素の作成\r\nfunction createDiv(count) {\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(\"#searches\").append(`<div id=\"search${count}\"></div>`);\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#search${count}`).addClass(\"row p-0\");\r\n}\r\n\r\nfunction createForm(count) {\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#search${count}`).append(\r\n    `<form id=\"searchForm${count}\" onsubmit=\"return false;\"></form>`\r\n  );\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#searchForm${count}`).addClass(\"p-0 mb-2 input-group\");\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#searchFrom${count}`).attr({ onsubmit: \"return false;\" });\r\n}\r\nfunction createSearchP(headerText, count) {\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#searchForm${count}`).append(\r\n    `<p id=\"headerText${count}\">${headerText}</p>`\r\n  );\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#headerText${count}`).addClass(\r\n    `headerText col-2 mb-0 align-items-center d-flex flex-row-reverse input-group-addon border col-sm-4 col-md-2`\r\n  );\r\n}\r\nfunction createSearchInput(count) {\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#searchForm${count}`).append(`<input id=\"${count}\">`);\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#${count}`).addClass(`form-control mb-0 rounded-right col-sm-8 col-md-10`);\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#${count}`).attr({ type: \"text\", autocomplete: \"off\" });\r\n  // ajaxを用いたオートコンプリート機能、GitHub Pagesでうまく動作しないためコメントアウト\r\n  //$(`#${count}`).autocomplete({\r\n  //  source: function (request, response) {\r\n  //    $.ajax({\r\n  //      url: \"http://www.google.com/complete/search\",\r\n  //      data: { hl: \"ja\", client: \"firefox\", q: request.term },\r\n  //      dataType: \"jsonp\",\r\n  //      type: \"GET\",\r\n  //      success: function (data) {\r\n  //        response(data[1]);\r\n  //      },\r\n  //    });\r\n  //  },\r\n  //  autoFocus: true,\r\n  //  delay: 300,\r\n  //  minLength: 2,\r\n  //});\r\n}\r\nfunction createSearchDeleteButton(count) {\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#searchForm${count}`).append(\r\n    `<button id=\"deleteButton${count}\">削除</button>`\r\n  );\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#deleteButton${count}`).addClass(`btn btn-outline-warning ml-1`);\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#deleteButton${count}`).attr({ type: \"button\" });\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#deleteButton${count}`).attr({ tabindex: \"-1\" });\r\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#deleteButton${count}`).on(\"click\", () => {\r\n    (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.debug)(\"[PUSH]delete word\");\r\n    (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.debug)(jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#headerText${count}`)[0]);\r\n    var deleteWord = jquery__WEBPACK_IMPORTED_MODULE_1___default()(`#headerText${count}`).text();\r\n    (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.debug)(`delete word:${deleteWord}`);\r\n    (0,_storage__WEBPACK_IMPORTED_MODULE_0__.removeWordStorage)(deleteWord);\r\n    location.reload();\r\n  });\r\n}\r\n\n\n//# sourceURL=webpack://const_word_search/./src/js/createDom.js?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.createSearchDeleteButton = exports.createSearchInput = exports.createSearchP = exports.createForm = exports.createDiv = void 0;\r\nvar storage_1 = __webpack_require__(/*! ./storage */ \"./src/js/storage.js\");\r\nvar jquery_1 = __importDefault(__webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\"));\r\nvar utils_js_1 = __webpack_require__(/*! ./utils.js */ \"./src/js/utils.js\");\r\n//div要素の作成\r\nfunction createDiv(count) {\r\n    jquery_1.default(\"#searches\").append(\"<div id=\\\"search\" + count + \"\\\"></div>\");\r\n    jquery_1.default(\"#search\" + count).addClass(\"row p-0\");\r\n}\r\nexports.createDiv = createDiv;\r\nfunction createForm(count) {\r\n    jquery_1.default(\"#search\" + count).append(\"<form id=\\\"searchForm\" + count + \"\\\" onsubmit=\\\"return false;\\\"></form>\");\r\n    jquery_1.default(\"#searchForm\" + count).addClass(\"p-0 mb-2 input-group\");\r\n    jquery_1.default(\"#searchFrom\" + count).attr({ onsubmit: \"return false;\" });\r\n}\r\nexports.createForm = createForm;\r\nfunction createSearchP(headerText, count) {\r\n    jquery_1.default(\"#searchForm\" + count).append(\"<p id=\\\"headerText\" + count + \"\\\">\" + headerText + \"</p>\");\r\n    jquery_1.default(\"#headerText\" + count).addClass(\"headerText col-2 mb-0 align-items-center d-flex flex-row-reverse input-group-addon border col-sm-4 col-md-2\");\r\n}\r\nexports.createSearchP = createSearchP;\r\nfunction createSearchInput(count) {\r\n    jquery_1.default(\"#searchForm\" + count).append(\"<input id=\\\"\" + count + \"\\\">\");\r\n    jquery_1.default(\"#\" + count).addClass(\"form-control mb-0 rounded-right col-sm-8 col-md-10\");\r\n    jquery_1.default(\"#\" + count).attr({ type: \"text\", autocomplete: \"off\" });\r\n    // ajaxを用いたオートコンプリート機能、GitHub Pagesでうまく動作しないためコメントアウト\r\n    //$(`#${count}`).autocomplete({\r\n    //  source: function (request, response) {\r\n    //    $.ajax({\r\n    //      url: \"http://www.google.com/complete/search\",\r\n    //      data: { hl: \"ja\", client: \"firefox\", q: request.term },\r\n    //      dataType: \"jsonp\",\r\n    //      type: \"GET\",\r\n    //      success: function (data) {\r\n    //        response(data[1]);\r\n    //      },\r\n    //    });\r\n    //  },\r\n    //  autoFocus: true,\r\n    //  delay: 300,\r\n    //  minLength: 2,\r\n    //});\r\n}\r\nexports.createSearchInput = createSearchInput;\r\nfunction createSearchDeleteButton(count) {\r\n    jquery_1.default(\"#searchForm\" + count).append(\"<button id=\\\"deleteButton\" + count + \"\\\">\\u524A\\u9664</button>\");\r\n    jquery_1.default(\"#deleteButton\" + count).addClass(\"btn btn-outline-warning ml-1\");\r\n    jquery_1.default(\"#deleteButton\" + count).attr({ type: \"button\" });\r\n    jquery_1.default(\"#deleteButton\" + count).attr({ tabindex: \"-1\" });\r\n    jquery_1.default(\"#deleteButton\" + count).on(\"click\", function () {\r\n        utils_js_1.debug(\"[PUSH]delete word\");\r\n        utils_js_1.debug(jquery_1.default(\"#headerText\" + count)[0]);\r\n        var deleteWord = jquery_1.default(\"#headerText\" + count).text();\r\n        utils_js_1.debug(\"delete word:\" + deleteWord);\r\n        storage_1.removeWordStorage(deleteWord);\r\n        location.reload();\r\n    });\r\n}\r\nexports.createSearchDeleteButton = createSearchDeleteButton;\r\n\n\n//# sourceURL=webpack://const_word_search/./src/js/createDom.js?");
 
 /***/ }),
 
@@ -56,10 +45,21 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!************************!*\
   !*** ./src/js/init.js ***!
   \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"init\": () => (/* binding */ init)\n/* harmony export */ });\n/* harmony import */ var _searchBox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./searchBox */ \"./src/js/searchBox.js\");\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage */ \"./src/js/storage.js\");\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../package.json */ \"./package.json\");\n/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils.js */ \"./src/js/utils.js\");\n\r\n\r\n\r\n\r\n\r\nfunction init() {\r\n  var storage = (0,_storage__WEBPACK_IMPORTED_MODULE_1__.loadStorage)();\r\n  setSearchBox(storage.word_list);\r\n  setVersion();\r\n}\r\n\r\nfunction setSearchBox(word_list) {\r\n  if (word_list[0] == \"\") {\r\n    console.info(\"前回のword_listは空か存在しません\");\r\n  }\r\n  for (const word of word_list) (0,_searchBox__WEBPACK_IMPORTED_MODULE_0__.addSearchBox)(word);\r\n}\r\n\r\nfunction setVersion() {\r\n  let version = _package_json__WEBPACK_IMPORTED_MODULE_2__.version;\r\n  $(\"#version\").text(version);\r\n}\n\n//# sourceURL=webpack://const_word_search/./src/js/init.js?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.init = void 0;\r\nvar searchBox_1 = __webpack_require__(/*! ./searchBox */ \"./src/js/searchBox.js\");\r\nvar storage_1 = __webpack_require__(/*! ./storage */ \"./src/js/storage.js\");\r\nvar package_json_1 = __importDefault(__webpack_require__(/*! ./package.json */ \"./src/js/package.json\"));\r\nvar utils_js_1 = __webpack_require__(/*! ./utils.js */ \"./src/js/utils.js\");\r\nfunction init() {\r\n    utils_js_1.debug(\"run\");\r\n    var storage = storage_1.loadStorage();\r\n    setSearchBox(storage.word_list);\r\n    setVersion();\r\n}\r\nexports.init = init;\r\nfunction setSearchBox(word_list) {\r\n    if (word_list[0] == \"\") {\r\n        console.info(\"前回のword_listは空か存在しません\");\r\n        return;\r\n    }\r\n    for (var _i = 0, word_list_1 = word_list; _i < word_list_1.length; _i++) {\r\n        var word = word_list_1[_i];\r\n        searchBox_1.addSearchBox(word);\r\n    }\r\n}\r\nfunction setVersion() {\r\n    var version = package_json_1.default.version;\r\n    $(\"#version\").text(version);\r\n}\r\n\n\n//# sourceURL=webpack://const_word_search/./src/js/init.js?");
+
+/***/ }),
+
+/***/ "./src/js/package.json":
+/*!*****************************!*\
+  !*** ./src/js/package.json ***!
+  \*****************************/
+/***/ ((module) => {
+
+"use strict";
+eval("module.exports = JSON.parse('{\"name\":\"const_word_search\",\"version\":\"1.7\",\"main\":\"index.js\",\"repository\":\"https://github.com/Cou01000111/ConstWordSearch\",\"author\":\"kamiya cou <courange.c@gmail.com>\",\"license\":\"MIT\",\"scripts\":{\"build\":\"copy .\\\\\\\\package.json .\\\\\\\\src\\\\\\\\ts && tsc && webpack --mode=development\"},\"dependencies\":{\"@types/jquery\":\"^3.5.14\",\"jquery\":\"^3.6.0\",\"webpack\":\"^5.39.1\",\"webpack-cli\":\"^4.7.2\",\"webpack-dev-server\":\"^3.11.2\"}}');\n\n//# sourceURL=webpack://const_word_search/./src/js/package.json?");
 
 /***/ }),
 
@@ -67,10 +67,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!*****************************!*\
   !*** ./src/js/searchBox.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addSearchBox\": () => (/* binding */ addSearchBox),\n/* harmony export */   \"getWordList\": () => (/* binding */ getWordList)\n/* harmony export */ });\n/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ \"./src/js/utils.js\");\n/* harmony import */ var _createDom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createDom.js */ \"./src/js/createDom.js\");\n\r\n\r\n\r\nfunction addSearchBox(headerText) {\r\n  var id = $(\"#searches\").children().length;\r\n  (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.debug)(id);\r\n  (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.debug)(\"call:addSearchBox:\" + headerText);\r\n  (0,_createDom_js__WEBPACK_IMPORTED_MODULE_1__.createDiv)(id);\r\n  (0,_createDom_js__WEBPACK_IMPORTED_MODULE_1__.createForm)(id);\r\n  (0,_createDom_js__WEBPACK_IMPORTED_MODULE_1__.createSearchP)(headerText, id);\r\n  (0,_createDom_js__WEBPACK_IMPORTED_MODULE_1__.createSearchInput)(id);\r\n  (0,_createDom_js__WEBPACK_IMPORTED_MODULE_1__.createSearchDeleteButton)(id);\r\n  $(`#${id}`).on(\"keydown\", (e) => {\r\n    (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.debug)(\"keydown取得\");\r\n    if (e.key === \"Enter\") {\r\n      search(id);\r\n    }\r\n  });\r\n}\r\n\r\nfunction search(index) {\r\n  (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.debug)(\"search!\");\r\n  var searchString =\r\n    $(`#headerText${index}`).text() + \" \" + $(`#${index}`).val();\r\n  searchString = encodeURIComponent(searchString);\r\n  (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.debug)(searchString);\r\n  var query = `q=${searchString}&oq=${searchString}`;\r\n  var url = \"https://www.google.com/search?\" + query;\r\n  (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.debug)(url);\r\n  window.location.href = url;\r\n}\r\n\r\nfunction getWordList() {}\r\n\n\n//# sourceURL=webpack://const_word_search/./src/js/searchBox.js?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.getWordList = exports.addSearchBox = void 0;\r\nvar utils_js_1 = __webpack_require__(/*! ./utils.js */ \"./src/js/utils.js\");\r\nvar createDom_js_1 = __webpack_require__(/*! ./createDom.js */ \"./src/js/createDom.js\");\r\nfunction addSearchBox(headerText) {\r\n    var id = $(\"#searches\").children().length;\r\n    utils_js_1.debug(id);\r\n    utils_js_1.debug(\"call:addSearchBox:\" + headerText);\r\n    createDom_js_1.createDiv(id);\r\n    createDom_js_1.createForm(id);\r\n    createDom_js_1.createSearchP(headerText, id);\r\n    createDom_js_1.createSearchInput(id);\r\n    createDom_js_1.createSearchDeleteButton(id);\r\n    $(\"#\" + id).on(\"keydown\", function (e) {\r\n        utils_js_1.debug(\"keydown取得\");\r\n        if (e.key === \"Enter\") {\r\n            search(id);\r\n        }\r\n    });\r\n}\r\nexports.addSearchBox = addSearchBox;\r\nfunction search(index) {\r\n    utils_js_1.debug(\"search!\");\r\n    var searchString = $(\"#headerText\" + index).text() + \" \" + $(\"#\" + index).val();\r\n    searchString = encodeURIComponent(searchString);\r\n    utils_js_1.debug(searchString);\r\n    var query = \"q=\" + searchString + \"&oq=\" + searchString;\r\n    var url = \"https://www.google.com/search?\" + query;\r\n    utils_js_1.debug(url);\r\n    window.location.href = url;\r\n}\r\nfunction getWordList() { }\r\nexports.getWordList = getWordList;\r\n\n\n//# sourceURL=webpack://const_word_search/./src/js/searchBox.js?");
 
 /***/ }),
 
@@ -78,10 +78,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!***************************!*\
   !*** ./src/js/storage.js ***!
   \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"LOCAL_STORAGE_KEY\": () => (/* binding */ LOCAL_STORAGE_KEY),\n/* harmony export */   \"loadStorage\": () => (/* binding */ loadStorage),\n/* harmony export */   \"addWordStorage\": () => (/* binding */ addWordStorage),\n/* harmony export */   \"removeWordStorage\": () => (/* binding */ removeWordStorage)\n/* harmony export */ });\n/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ \"./src/js/utils.js\");\n\r\nvar LOCAL_STORAGE_KEY = \"cow-search\";\r\n\r\nfunction loadStorage() {\r\n  (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.debug)(\"[CALL]loadStorage\");\r\n  var data = localStorage.getItem(LOCAL_STORAGE_KEY);\r\n  let JSONdata;\r\n  let emptyWorldList = {\r\n    word_list: [],\r\n  };\r\n  if (data == null || data == \"\") return emptyWorldList;\r\n  (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.debug)(data);\r\n  try {\r\n    JSONdata = JSON.parse(data);\r\n  } catch (error) {\r\n    console.error(error);\r\n    console.error(data + \"をjsonに変換できませんでした\");\r\n    return emptyWorldList;\r\n  }\r\n  return JSONdata;\r\n}\r\n\r\nfunction addWordStorage(word) {\r\n  (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.debug)(\"[CALL]addWordStorage\");\r\n  var data = loadStorage();\r\n  data.word_list.push(word);\r\n  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));\r\n}\r\n\r\nfunction removeWordStorage(word) {\r\n  (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.debug)(\"[CALL]removeWordStorage\", word);\r\n  var data = loadStorage();\r\n  data.word_list = data.word_list.filter((item) => item != word);\r\n  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));\r\n}\r\n\n\n//# sourceURL=webpack://const_word_search/./src/js/storage.js?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.removeWordStorage = exports.addWordStorage = exports.loadStorage = exports.LOCAL_STORAGE_KEY = void 0;\r\nvar utils_js_1 = __webpack_require__(/*! ./utils.js */ \"./src/js/utils.js\");\r\nexports.LOCAL_STORAGE_KEY = \"cow-search\";\r\nfunction loadStorage() {\r\n    var data = localStorage.getItem(exports.LOCAL_STORAGE_KEY);\r\n    var JSONdata;\r\n    var emptyWorldList = {\r\n        word_list: [],\r\n    };\r\n    if (data == null || data == \"\")\r\n        return emptyWorldList;\r\n    utils_js_1.debug(data);\r\n    try {\r\n        JSONdata = JSON.parse(data);\r\n    }\r\n    catch (error) {\r\n        console.error(error);\r\n        console.error(data + \"をjsonに変換できませんでした\");\r\n        return emptyWorldList;\r\n    }\r\n    return JSONdata;\r\n}\r\nexports.loadStorage = loadStorage;\r\nfunction addWordStorage(word) {\r\n    var data = loadStorage();\r\n    data.word_list.push(word);\r\n    localStorage.setItem(exports.LOCAL_STORAGE_KEY, JSON.stringify(data));\r\n}\r\nexports.addWordStorage = addWordStorage;\r\nfunction removeWordStorage(word) {\r\n    var data = loadStorage();\r\n    data.word_list = data.word_list.filter(function (item) { return item != word; });\r\n    localStorage.setItem(exports.LOCAL_STORAGE_KEY, JSON.stringify(data));\r\n}\r\nexports.removeWordStorage = removeWordStorage;\r\n\n\n//# sourceURL=webpack://const_word_search/./src/js/storage.js?");
 
 /***/ }),
 
@@ -89,10 +89,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!*************************!*\
   !*** ./src/js/utils.js ***!
   \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"debug\": () => (/* binding */ debug)\n/* harmony export */ });\nconst DEBUG_MODE = 1;\r\nfunction debug(output) {\r\n  if (DEBUG_MODE) console.log(output);\r\n}\r\n\n\n//# sourceURL=webpack://const_word_search/./src/js/utils.js?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.debug = void 0;\r\nvar DEBUG_MODE = 1;\r\nfunction debug(output) {\r\n    if (DEBUG_MODE)\r\n        console.log(output);\r\n}\r\nexports.debug = debug;\r\n\n\n//# sourceURL=webpack://const_word_search/./src/js/utils.js?");
 
 /***/ })
 
@@ -123,51 +123,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/js/app.js");
 /******/ 	
 /******/ })()
