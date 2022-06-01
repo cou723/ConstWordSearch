@@ -1,6 +1,6 @@
 import { removeWordStorage } from "./storage";
 import $ from "jquery";
-import utils from "./utils.js";
+import { debug } from "./utils.js";
 
 //div要素の作成
 export function createDiv(count) {

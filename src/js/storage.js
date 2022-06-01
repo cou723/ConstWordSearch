@@ -5,18 +5,17 @@ export function loadStorage() {
   debug("[CALL]loadStorage");
   var data = localStorage.getItem(LOCAL_STORAGE_KEY);
   let JSONdata;
-  if (data == null || data == "")
-    return {
-      word_list: [],
-    };
+  let emptyWorldList = {
+    word_list: [],
+  };
+  if (data == null || data == "") return emptyWorldList;
+  debug(data);
   try {
     JSONdata = JSON.parse(data);
   } catch (error) {
     console.error(error);
     console.error(data + "をjsonに変換できませんでした");
-    return {
-      word_list: [],
-    };
+    return emptyWorldList;
   }
   return JSONdata;
 }

@@ -1,4 +1,4 @@
-import utils from "./utils.js";
+import { debug } from "./utils.js";
 import {
   createDiv,
   createForm,
@@ -18,7 +18,7 @@ export function addSearchBox(headerText) {
   createSearchDeleteButton(id);
   $(`#${id}`).on("keydown", (e) => {
     debug("keydown取得");
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       search(id);
     }
   });

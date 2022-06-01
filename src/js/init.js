@@ -3,14 +3,16 @@ import { loadStorage } from "./storage";
 import pack_json from "../../package.json";
 import { debug } from "./utils.js";
 
-export function init(params) {
+export function init() {
   var storage = loadStorage();
   setSearchBox(storage.word_list);
   setVersion();
 }
 
 function setSearchBox(word_list) {
-  if (word_list[0] != "") return;
+  if (word_list[0] == "") {
+    console.info("前回のword_listは空か存在しません");
+  }
   for (const word of word_list) addSearchBox(word);
 }
 
